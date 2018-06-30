@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Pizzeria.Testing
@@ -16,6 +17,17 @@ namespace Pizzeria.Testing
             var actual = user.ShowName();
             // assert
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void OrderHasItemLimit(Order order)
+        {
+            var pizzaArray = new Pizza[12];
+            for(int i = 0; i <= 12; i++) // should run 13 times
+            {
+                pizzaArray[i] = new Pizza();
+            }
+            Assert.Throws<IndexOutOfRangeException>;
         }
     }
 }
