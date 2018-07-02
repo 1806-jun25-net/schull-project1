@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pizzeria.Library
+namespace Pizzeria.Library.Interfaces
 {
     public interface IUser
     {

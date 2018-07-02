@@ -1,12 +1,213 @@
-﻿using System;
+﻿using Pizzeria.Library.Interfaces;
+using Pizzeria.Library.Models;
+using System;
 
 namespace Pizzeria.UI
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            /*
+             *I normally hate having variables out in the open program like this, but in order for
+             *these to stay relatively constant throughout and be able to be processed in the console,
+             *they have to be instantiated and stored at the base level of the program.
+             *I don't like it, but it's the only way I can think to do this.
+             *It will absolutely be cleaner for the webapp; I know how to make those a /little/ better.
+             */        
+            Order order = new Order();
+            Pizza pizza = new Pizza();
+            Ingredient ingredient = new Ingredient("", 0);
+
+            Console.WriteLine("Pizzeria App: Console ver 1.0\n" +
+                "Your input for this application will be based on numeric values.\n\n");
+            var input = 1;
+
+            while (input != 0)
+            {
+                ShowCommandReference();
+                input = int.Parse(Console.ReadLine());
+                switch (input)
+                {
+                    case 0: // Exit Application
+                        Environment.Exit(0);
+                        break;
+                    case 1: // Show Command Menu
+                        ShowCommandReference();
+                        break;
+                    case 2: // Create New User and Read Back Creation Info
+                        Console.WriteLine("Please input your information in the following format:\n" +
+                            "Firstname Lastname");
+                        string[] userInfo = Console.ReadLine().Split(' ');
+                        User newUser = new User(userInfo[0], userInfo[1]);
+                        Console.WriteLine("Where would you prefer to order from?");
+                        newUser.DefaultLocation = Console.ReadLine();
+                        Console.WriteLine($"Here's what we know currently: Your name is {newUser.FirstName} {newUser.LastName}," +
+                            $"and you will be ordering from {newUser.DefaultLocation}. You may change this location any time!");
+                        break;
+                    case 3: // Create New Order
+                        Console.WriteLine("Before we proceed, you cannot have more than one active order at any " +
+                            "one given time. If you use this command after already creating an order, that " +
+                            "previous order will be overwritten.\n" +
+                            "Would you like to proceed with this command? [ Y / N ]");
+                        if(Console.ReadLine() == "Y") // Proceed to Create New Order / Overwrite Previous Order
+                        {
+                            order = new Order();
+                            Console.WriteLine("You have begun your new order, but it's currently empty. " +
+                                "You can use Command 4 to begin creating a new pizza!");
+                        }
+                        else if(Console.ReadLine() == "N") // Cancel New Order Creation Process
+                        {
+                            break;
+                        }
+                        else // Invalid Input
+                        {
+                            Console.WriteLine("Incorrect input: aborting operation and returning to safe zone.");
+                            break;
+                        }
+                        break;
+                    case 4: // Create Your Pizza
+                        Console.WriteLine("Before we proceed, you cannot have more than one active order at any " +
+                            "one given time. If you use this command after already creating an order, that " +
+                            "previous order will be overwritten.\n" +
+                            "Would you like to proceed with this command? [ Y / N ]");
+                        if (Console.ReadLine() == "Y") // Proceed to Create New Order / Overwrite Previous Order
+                        {
+                            order = new Order();
+                            Console.WriteLine("You have begun your new order, but it's currently empty. " +
+                                "You can use Command 4 to begin creating a new pizza!");
+                        }
+                        else if (Console.ReadLine() == "N") // Cancel New Order Creation Process
+                        {
+                            break;
+                        }
+                        else // Invalid Input
+                        {
+                            Console.WriteLine("Incorrect input: aborting operation and returning to safe zone.");
+                            break;
+                        }
+                        
+                        Ingredient topping = new Ingredient("", 0);
+                        Console.WriteLine("Please choose from the following to add to your pizza:\n" +
+                            "0 - Finished Adding Toppings\n" +
+                            "1 - Pepperoni\n" +
+                            "2 - Sausage\n" +
+                            "3 - Ham\n");
+                        switch(input){
+                            case 0: // Done adding toppings; break from method
+                                break;
+                            case 1:
+                                // Check for Ingredient(Pepperoni, 1) on this pizza.
+                                topping.Name = "Pepperoni";
+                                topping.Count = 1;
+                                if (pizza.Toppings.Contains(topping))
+                                {
+                                    Console.WriteLine("This pizza already has pepperoni on it!");
+                                }
+                                else
+                                {
+                                    pizza.AddTopping(topping);
+                                    Console.WriteLine($"This is your pizza currently: {pizza.ToString()}");
+                                }
+                                break;
+                            case 2:
+                                // Check for Ingredient(Pepperoni, 1) on this pizza.
+                                topping.Name = "Sausage";
+                                topping.Count = 1;
+                                if (pizza.Toppings.Contains(topping))
+                                {
+                                    Console.WriteLine("This pizza already has sausage on it!");
+                                }
+                                else
+                                {
+                                    pizza.AddTopping(topping);
+                                    Console.WriteLine($"This is your pizza currently: {pizza.ToString()}");
+                                }
+                                break;
+                            case 3:
+                                // Check for Ingredient(Pepperoni, 1) on this pizza.
+                                topping.Name = "Ham";
+                                topping.Count = 1;
+                                if (pizza.Toppings.Contains(topping))
+                                {
+                                    Console.WriteLine("This pizza already has ham on it!");
+                                }
+                                else
+                                {
+                                    pizza.AddTopping(topping);
+                                    Console.WriteLine($"This is your pizza currently: {pizza.ToString()}");
+                                }
+                                break;
+                            default:
+                                Console.WriteLine("Incorrect input: aborting operation and returning to safe zone.");
+                                break;
+                        }
+                        order.AddPizza(pizza);
+                        break;
+                    case 5: 
+                        break;
+                    case 6:
+                        //
+                        break;
+                    case 7:
+                        //
+                        break;
+                    case 8:
+                        //
+                        break;
+                    case 9:
+                        //
+                        break;
+                    case 10:
+                        //
+                        break;
+                    case 11:
+                        //
+                        break;
+                    case 12:
+                        //
+                        break;
+                    case 13:
+                        //
+                        break;
+                    case 14:
+                        //
+                        break;
+                    case 15:
+                        //
+                        break;
+                    case 16:
+                        //
+                        break;
+                    default:
+                        Console.WriteLine("ERROR: Invalid input.");
+                        break;
+                }
+            }
         }
+
+        static void ShowCommandReference()
+        {
+            Console.WriteLine(
+                "0 - Exit Program\n" +
+                "1 - Show Command Reference\n" +
+                "2 - Input Username\n" +
+                "3 - Create/Overwrite Your Order\n" +
+                "4 - Create Your Pizza\n" +
+                "5 - Add Pizza to Order\n" +
+                "6 - Add Topping to Pizza\n" +
+                "7 - Remove Topping from Pizza (Requires Confirmation)\n" +
+                "8 - Remove Pizza from Order (Requires Confirmation)\n" +
+                "9 - Show Order Information\n" +
+                "10 - Show Pizza Information\n" +
+                "11 - Show Location Inventory\n" +
+                "12 - Add an Item to Location Inventory\n" +
+                "13 - Remove an Item from Location Inventory\n" +
+                "14 - Delete Location Inventory (Requires Confirmation)\n" +
+                "15 - Change User Default Location\n" +
+                "16 - Delete Current Order\n");
+        }
+
+        
     }
 }
