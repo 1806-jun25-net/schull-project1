@@ -9,5 +9,12 @@ namespace Pizzeria.Library.Interfaces
     {
         ArrayList Toppings { get; set; }
         decimal Price { get; set; }
+
+        void AddTopping();
+    }
+    public struct Topping
+    {
+        public string toppingName;
+        public int count;
     }
 }
