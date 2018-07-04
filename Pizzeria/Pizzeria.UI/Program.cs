@@ -82,7 +82,8 @@ namespace Pizzeria.UI
                         if (pizzaDecision == "y") // Proceed to Create New Order / Overwrite Previous Order
                         {
                             pizza = new Pizza();
-                            Console.WriteLine("You have begun creating your new pizza, but there's nothing on it. " +
+                            pizza.AddTopping(new Ingredient("Cheese", 1));
+                            Console.WriteLine("You have begun creating your new pizza. There's only cheese on it for now. " +
                                 "Once you've added your toppings, you can use Command 5 to save it to your order!\n");
                         }
                         else if (pizzaDecision == "n") // Cancel New Order Creation Process
@@ -100,7 +101,8 @@ namespace Pizzeria.UI
                             "0 - Finished Adding Toppings\n" +
                             "1 - Pepperoni\n" +
                             "2 - Sausage\n" +
-                            "3 - Ham\n");
+                            "3 - Ham\n" +
+                            "4 - Cheese\n");
                         input = int.Parse(Console.ReadLine());
                         switch(input){
                             case 0: // Done adding toppings; break from method
@@ -139,6 +141,20 @@ namespace Pizzeria.UI
                                 topping.Count = 1;
                                 if (pizza.Toppings.Contains(topping))
                                 {
+                                    Console.WriteLine("This pizza already has cheese on it!\n");
+                                }
+                                else
+                                {
+                                    pizza.AddTopping(topping);
+                                    Console.WriteLine($"This is your pizza currently: {pizza.ToString()}\n");
+                                }
+                                break;
+                            case 4:
+                                // Check for Ingredient(Pepperoni, 1) on this pizza.
+                                topping.Name = "Cheese";
+                                topping.Count = 1;
+                                if (pizza.Toppings.Contains(topping))
+                                {
                                     Console.WriteLine("This pizza already has ham on it!\n");
                                 }
                                 else
@@ -154,6 +170,12 @@ namespace Pizzeria.UI
                         //order.AddPizza(pizza);
                         break;
                     case 5: // Add Pizza to Order
+                        if(pizza != null)
+                        {
+                            order.AddPizza(pizza);
+                            Console.WriteLine("Your pizza has been added to the order! If you'd like to add another one " +
+                                "just like it, you can use this command again.\n");
+                        }
                         break;
                     case 6:
                         // Add Topping to Pizza
