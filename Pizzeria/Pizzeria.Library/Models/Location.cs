@@ -9,7 +9,7 @@ namespace Pizzeria.Library.Models
     public class Location : ILocation
     {
         public string LocationName { get; set; }
-        public List<ITopping> Inventory { get; set; }
+        public List<Topping> Inventory { get; set; }
 
         public void DisplayInventory()
         {
@@ -17,7 +17,7 @@ namespace Pizzeria.Library.Models
             {
                 foreach (var item in Inventory)
                 {
-                    Console.WriteLine($"{item.Count} x {item.Name}");
+                    Console.WriteLine($"{item.count} x {item.toppingName}");
                 }
             }
         }
@@ -29,11 +29,28 @@ namespace Pizzeria.Library.Models
 
         public void AddToInventory(string itemName, int itemCount)
         {
-            var itemInStock = Inventory.FirstOrDefault(x => x.Name == itemName);
-            if (itemInStock != null)
+            if (HasTopping(itemName.ToLower()))
             {
-                itemInStock.Count += itemCount;
+                Topping itemInStock = Inventory.FirstOrDefault(x => x.toppingName == itemName.ToLower());
+                itemInStock.count += itemCount;
             }
+            else
+            {
+                Inventory.Add(new Topping(itemName.ToLower(), itemCount));
+            }
+        }
+
+        private bool HasTopping(string topping)
+        {
+            // Find an instance of a Topping in the Inventory 
+            // where "inventoryTopping.toppingName == topping.toppingName"
+            Topping itemInStock = Inventory.FirstOrDefault(x => x.toppingName == topping);
+            // Is the topping present in inventory?
+            if (itemInStock.toppingName.ToLower() == topping.ToLower())
+            {
+                return true;
+            }
+            return false;
         }
 
         public void RemoveFromInventory(string itemName, int itemCount)
@@ -55,6 +72,11 @@ namespace Pizzeria.Library.Models
             {
                 Inventory.Remove(itemInStock);
             }
+        }
+
+        public string InventoryToString()
+        {
+            throw new NotImplementedException();
         }
     }
 }

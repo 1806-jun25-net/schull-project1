@@ -11,7 +11,7 @@ namespace Pizzeria.Library.Models
         public ArrayList Toppings { get; set; }
         public decimal Price { get; set; } = 15.00M;
 
-        public void AddTopping(Ingredient topping)
+        public void AddTopping(Topping topping)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace Pizzeria.Library.Models
             }
         }
 
-        public void RemoveTopping(Ingredient topping)
+        public void RemoveTopping(Topping topping)
         {
             try
             {
@@ -44,14 +44,14 @@ namespace Pizzeria.Library.Models
             }
         }
 
-        public string ToString(Pizza pizza)
+        public string ShowPizzaDetails()
         {
             string result = "A pizza with ";
-            foreach(var topping in pizza.Toppings)
+            foreach(var topping in this.Toppings)
             {
                 result += $"{topping}, ";
             }
-            result += $"all worth {pizza.Price}";
+            result += $"all worth {this.Price}";
             return result;
         }
     }

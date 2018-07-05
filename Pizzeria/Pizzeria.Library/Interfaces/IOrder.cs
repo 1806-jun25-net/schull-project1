@@ -11,5 +11,9 @@ namespace Pizzeria.Library.Interfaces
         DateTime OrderTime { get; set; }
         List<IPizza> Pizzas { get; set; }
         decimal Value { get; set; }
+
+        void AddPizza();
+        void RemovePizza();
+        void DeleteOrder();
     }
 }

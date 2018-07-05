@@ -7,6 +7,9 @@ namespace Pizzeria.Library.Interfaces
     public interface ILocation
     {
         string LocationName { get; set; }
-        List<ITopping> Inventory { get; set; }
+        List<Topping> Inventory { get; set; }
+
+        void DisplayInventory();
+        string InventoryToString();
     }
 }

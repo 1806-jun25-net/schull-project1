@@ -9,11 +9,14 @@ namespace Pizzeria.Library.Interfaces
     {
         ArrayList Toppings { get; set; }
         decimal Price { get; set; }
-
-        void AddTopping();
     }
     public struct Topping
     {
+        public Topping(string name, int count)
+        {
+            this.toppingName = name;
+            this.count = count;
+        }
         public string toppingName;
         public int count;
     }

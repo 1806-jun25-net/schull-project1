@@ -16,8 +16,7 @@ namespace Pizzeria.UI
              *It will absolutely be cleaner for the webapp; I know how to make those a /little/ better.
              */        
             Order order = new Order();
-            Pizza pizza = new Pizza();
-            Ingredient ingredient = new Ingredient("", 0);
+            Pizza pizza = new Pizza(); 
             var input = 1;
 
             Console.WriteLine("Pizzeria App: Console ver 1.0\n" +
@@ -82,7 +81,7 @@ namespace Pizzeria.UI
                         if (pizzaDecision == "y") // Proceed to Create New Order / Overwrite Previous Order
                         {
                             pizza = new Pizza();
-                            pizza.AddTopping(new Ingredient("Cheese", 1));
+                            pizza.AddTopping(new Topping("cheese", 1));
                             Console.WriteLine("You have begun creating your new pizza. There's only cheese on it for now. " +
                                 "Once you've added your toppings, you can use Command 5 to save it to your order!\n");
                         }
@@ -96,7 +95,6 @@ namespace Pizzeria.UI
                             break;
                         }
                         
-                        Ingredient topping = new Ingredient("", 0);
                         Console.WriteLine("Please choose from the following to add to your pizza:\n" +
                             "0 - Finished Adding Toppings\n" +
                             "1 - Pepperoni\n" +
@@ -109,58 +107,50 @@ namespace Pizzeria.UI
                                 break;
                             case 1:
                                 // Check for Ingredient(Pepperoni, 1) on this pizza.
-                                topping.Name = "Pepperoni";
-                                topping.Count = 1;
-                                if (pizza.Toppings.Contains(topping))
+                                if (pizza.Toppings.Contains(new Topping("pepperoni", 1)))
                                 {
                                     Console.WriteLine("This pizza already has pepperoni on it!\n");
                                 }
                                 else
                                 {
-                                    pizza.AddTopping(topping);
-                                    Console.WriteLine($"This is your pizza currently: {pizza.ToString()}\n");
+                                    pizza.AddTopping(new Topping("pepperoni", 1));
+                                    Console.WriteLine($"This is your pizza currently: {pizza.ShowPizzaDetails()}\n");
                                 }
                                 break;
                             case 2:
                                 // Check for Ingredient(Pepperoni, 1) on this pizza.
-                                topping.Name = "Sausage";
-                                topping.Count = 1;
-                                if (pizza.Toppings.Contains(topping))
+                                if (pizza.Toppings.Contains(new Topping("sausage", 1)))
                                 {
                                     Console.WriteLine("This pizza already has sausage on it!\n");
                                 }
                                 else
                                 {
-                                    pizza.AddTopping(topping);
-                                    Console.WriteLine($"This is your pizza currently: {pizza.ToString()}\n");
+                                    pizza.AddTopping(new Topping("sausage", 1));
+                                    Console.WriteLine($"This is your pizza currently: {pizza.ShowPizzaDetails()}\n");
                                 }
                                 break;
                             case 3:
                                 // Check for Ingredient(Pepperoni, 1) on this pizza.
-                                topping.Name = "Ham";
-                                topping.Count = 1;
-                                if (pizza.Toppings.Contains(topping))
-                                {
-                                    Console.WriteLine("This pizza already has cheese on it!\n");
-                                }
-                                else
-                                {
-                                    pizza.AddTopping(topping);
-                                    Console.WriteLine($"This is your pizza currently: {pizza.ToString()}\n");
-                                }
-                                break;
-                            case 4:
-                                // Check for Ingredient(Pepperoni, 1) on this pizza.
-                                topping.Name = "Cheese";
-                                topping.Count = 1;
-                                if (pizza.Toppings.Contains(topping))
+                                if (pizza.Toppings.Contains(new Topping("ham", 1)))
                                 {
                                     Console.WriteLine("This pizza already has ham on it!\n");
                                 }
                                 else
                                 {
-                                    pizza.AddTopping(topping);
-                                    Console.WriteLine($"This is your pizza currently: {pizza.ToString()}\n");
+                                    pizza.AddTopping(new Topping("ham", 1));
+                                    Console.WriteLine($"This is your pizza currently: {pizza.ShowPizzaDetails()}\n");
+                                }
+                                break;
+                            case 4:
+                                // Check for Ingredient(Pepperoni, 1) on this pizza.
+                                if (pizza.Toppings.Contains(new Topping("cheese", 1)))
+                                {
+                                    Console.WriteLine("This pizza already has cheese on it!\n");
+                                }
+                                else
+                                {
+                                    pizza.AddTopping(new Topping("cheese", 1));
+                                    Console.WriteLine($"This is your pizza currently: {pizza.ShowPizzaDetails()}\n");
                                 }
                                 break;
                             default:
