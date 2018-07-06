@@ -6,9 +6,9 @@ namespace Pizzeria.Library.Interfaces
 {
     public interface IUser
     {
+        int UserID { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        string DefaultLocation { get; set; }
-        DateTime LastOrder { get; set; }
+        int DefaultLocationID { get; set; }
     }
 }

@@ -16,9 +16,9 @@ namespace Pizzeria.Library.Models
             this.lastName = lastName;
         }
 
+        public int UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string DefaultLocation { get; set; }
-        public DateTime LastOrder { get; set; }
+        public int DefaultLocationID { get; set; }
     }
 }

@@ -22,11 +22,6 @@ namespace Pizzeria.Library.Models
             }
         }
 
-        public void DeleteInventory()
-        {
-            Inventory = null;
-        }
-
         public void AddToInventory(string itemName, int itemCount)
         {
             // If inventory has a topping with itemName as the name, do this.
@@ -48,7 +43,7 @@ namespace Pizzeria.Library.Models
         {
             if (HasTopping(itemName) == true)
             {
-                Inventory.Where(x => x.toppingName == itemName);
+                var topping = Inventory.Find(itemName);
             }
             //var itemInStock = Inventory.FirstOrDefault(x => x.Name == itemName);
             //if (Inventory.Contains(itemInStock) == true && itemInStock.Count > itemCount)

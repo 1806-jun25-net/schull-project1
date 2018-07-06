@@ -11,48 +11,50 @@ namespace Pizzeria.Library.Models
         public ArrayList Toppings { get; set; }
         public decimal Price { get; set; } = 15.00M;
 
-        public void AddTopping(Topping topping)
+        public void AddTopping(string topping)
         {
-            try
+            // If input is not null or empty, add to Toppings and increase price
+            if(topping != null && topping != "")
             {
                 Toppings.Add(topping);
-            }
-            catch (ArgumentNullException ex)
-            {
-                Console.WriteLine($"ERROR: {ex} - You cannot add nothing as a topping.");
-            }
-            finally
-            {
                 Price += 1.00M;
             }
         }
 
-        public void RemoveTopping(Topping topping)
+        public void RemoveTopping(string topping)
         {
-            try
+            // If input is not null or empty
+            if(topping != null && topping != "")
             {
-                this.Toppings.Contains(topping);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                Console.WriteLine($"ERROR: {ex} - The topping you attempted to remove was not found on your pizza.");
-            }
-            finally
-            {
-                Toppings.Remove(topping);
-                Price -= 1.00M;
+                // If Toppings contains input, remove that topping and decrease price
+                if (Toppings.Contains(topping))
+                {
+                    Toppings.Remove(topping);
+                    Price -= 1.00M;
+                }
             }
         }
 
-        public string ShowPizzaDetails()
+        public void ShowPizzaDetails()
         {
-            string result = "A pizza with ";
-            foreach(var topping in this.Toppings)
+            string output = "This pizza has ";
+            // Adds each topping to the string followed by a comma for formatting
+            foreach (var item in Toppings)
             {
-                result += $"{topping}, ";
+                output += $"{item}, ";
             }
-            result += $"all worth {this.Price}";
-            return result;
+            output += $"and is worth {Decimal.ToOACurrency(Price)}";
+        }
+
+        public string ToString()
+        {
+            string output = "";
+            foreach(var item in Toppings)
+            {
+                output += $"{item} ";
+            }
+            output += $": {Price}";
+            return output;
         }
     }
 }
