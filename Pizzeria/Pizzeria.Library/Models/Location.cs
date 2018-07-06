@@ -29,15 +29,44 @@ namespace Pizzeria.Library.Models
 
         public void AddToInventory(string itemName, int itemCount)
         {
+            // If inventory has a topping with itemName as the name, do this.
             if (HasTopping(itemName.ToLower()))
             {
                 Topping itemInStock = Inventory.FirstOrDefault(x => x.toppingName == itemName.ToLower());
                 itemInStock.count += itemCount;
             }
+            // If not, create a new topping and add it to the list.
             else
             {
                 Inventory.Add(new Topping(itemName.ToLower(), itemCount));
             }
+        }
+
+        
+
+        public void RemoveFromInventory(string itemName, int itemCount)
+        {
+            if (HasTopping(itemName) == true)
+            {
+                Inventory.Where(x => x.toppingName == itemName);
+            }
+            //var itemInStock = Inventory.FirstOrDefault(x => x.Name == itemName);
+            //if (Inventory.Contains(itemInStock) == true && itemInStock.Count > itemCount)
+            //{
+            //    if (itemInStock != null && itemInStock.Count >= itemCount)
+            //    {
+            //        itemInStock.Count -= itemCount;
+            //    }
+            //    else if (itemInStock.Count < itemCount)
+            //    {
+            //        Console.WriteLine($"There was not enough {itemInStock.Name} in inventory to pull from stock." +
+            //            $" You currently have {itemInStock.Count}.");
+            //    }
+            //}
+            //if (itemInStock.Count == 0)
+            //{
+            //    Inventory.Remove(itemInStock);
+            //}
         }
 
         private bool HasTopping(string topping)
@@ -51,27 +80,6 @@ namespace Pizzeria.Library.Models
                 return true;
             }
             return false;
-        }
-
-        public void RemoveFromInventory(string itemName, int itemCount)
-        {
-            var itemInStock = Inventory.FirstOrDefault(x => x.Name == itemName);
-            if (Inventory.Contains(itemInStock) == true && itemInStock.Count > itemCount)
-            {
-                if (itemInStock != null && itemInStock.Count >= itemCount)
-                {
-                    itemInStock.Count -= itemCount;
-                }
-                else if (itemInStock.Count < itemCount)
-                {
-                    Console.WriteLine($"There was not enough {itemInStock.Name} in inventory to pull from stock." +
-                        $" You currently have {itemInStock.Count}.");
-                }
-            }
-            if (itemInStock.Count == 0)
-            {
-                Inventory.Remove(itemInStock);
-            }
         }
 
         public string InventoryToString()
