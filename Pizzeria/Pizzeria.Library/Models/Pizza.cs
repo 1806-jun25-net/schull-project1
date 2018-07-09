@@ -46,7 +46,7 @@ namespace Pizzeria.Library.Models
             output += $"and is worth {Decimal.ToOACurrency(Price)}";
         }
 
-        public string ToString()
+        public override string ToString()
         {
             string output = "";
             foreach(var item in Toppings)

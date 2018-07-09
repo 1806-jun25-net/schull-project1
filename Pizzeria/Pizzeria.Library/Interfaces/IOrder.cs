@@ -6,14 +6,11 @@ namespace Pizzeria.Library.Interfaces
 {
     public interface IOrder
     {
-        string Location { get; set; }
+        int OrderID { get; set; }
+        ILocation Location { get; set; }
         IUser User { get; set; }
         DateTime OrderTime { get; set; }
         List<IPizza> Pizzas { get; set; }
         decimal Value { get; set; }
-
-        void AddPizza();
-        void RemovePizza();
-        void DeleteOrder();
     }
 }
