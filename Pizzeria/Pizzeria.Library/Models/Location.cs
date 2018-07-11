@@ -17,7 +17,6 @@ namespace Pizzeria.Library.Models
         //
         public void AddOrderToHistory(Order order)
         {
-            order.OrderID = OrderHistory.Count() + 1;
             OrderHistory.Add(order);
         }
 

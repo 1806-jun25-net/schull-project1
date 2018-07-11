@@ -53,7 +53,7 @@ namespace Pizzeria.UI
                         newUser = new User(userInfo[0], userInfo[1]);
                         Console.WriteLine("Where would you prefer to order from? (Enter store location ID number)");
                         newUser.DefaultLocationID = Int32.Parse(Console.ReadLine());
-                        Console.WriteLine($"Here's what we know currently: Your name is {newUser.FirstName} {newUser.LastName}," +
+                        Console.WriteLine($"Here's what we know currently: Your name is {newUser.FirstName} {newUser.LastName}, " +
                             $"and you will be ordering from {newUser.DefaultLocationID}. You may change this location any time!\n");
                         break;
                     case 3: // Create New Order
@@ -112,7 +112,7 @@ namespace Pizzeria.UI
                                 "blank pizza with no toppings. This could work as a cheese pizza!\n");
                             order.Value = order.RecalculateValue();
                             pizza = new Pizza();
-                            pizzeria.AddOrderToHistory(order);
+                            //pizzeria.AddOrderToHistory(order);
                             order.DeleteOrder();
                         }
                         else if (order.Pizzas.Count >= 12)
