@@ -7,7 +7,7 @@ namespace Pizzeria.Library.Interfaces
 {
     public interface IPizza
     {
-        ArrayList Toppings { get; set; }
+        int PizzaID { get; set; }
         decimal Price { get; set; }
     }
 }

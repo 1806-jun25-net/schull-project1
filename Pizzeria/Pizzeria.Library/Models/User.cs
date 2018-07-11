@@ -7,15 +7,11 @@ namespace Pizzeria.Library.Models
 {
     public class User : IUser
     {
-        private string firstName;
-        private string lastName;
-
         public User(string firstName, string lastName)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
+            FirstName = firstName;
+            LastName = lastName;
         }
-
         public int UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

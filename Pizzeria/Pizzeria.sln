@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzeria.Library", "Pizzeri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzeria.Testing", "Pizzeria.Testing\Pizzeria.Testing.csproj", "{DB60F7DB-67F8-42EA-BCD4-98A8ECCAA557}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzeria.UI", "Pizzeria.UI\Pizzeria.UI.csproj", "{17FD2457-3F28-4082-B514-129EAD09676C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzeria.UI", "Pizzeria.UI\Pizzeria.UI.csproj", "{17FD2457-3F28-4082-B514-129EAD09676C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIzzeria.Data", "PIzzeria.Data\PIzzeria.Data.csproj", "{5AF1598D-39C1-464F-87C3-AEF9B21946E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{17FD2457-3F28-4082-B514-129EAD09676C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17FD2457-3F28-4082-B514-129EAD09676C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17FD2457-3F28-4082-B514-129EAD09676C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AF1598D-39C1-464F-87C3-AEF9B21946E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF1598D-39C1-464F-87C3-AEF9B21946E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF1598D-39C1-464F-87C3-AEF9B21946E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF1598D-39C1-464F-87C3-AEF9B21946E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

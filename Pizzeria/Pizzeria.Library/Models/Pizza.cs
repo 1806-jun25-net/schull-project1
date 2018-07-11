@@ -8,53 +8,34 @@ namespace Pizzeria.Library.Models
 {
     public class Pizza : IPizza
     {
-        public ArrayList Toppings { get; set; }
+        public int PizzaID { get; set; }
         public decimal Price { get; set; } = 15.00M;
-
-        public void AddTopping(string topping)
-        {
-            // If input is not null or empty, add to Toppings and increase price
-            if(topping != null && topping != "")
-            {
-                Toppings.Add(topping);
-                Price += 1.00M;
-            }
-        }
-
-        public void RemoveTopping(string topping)
-        {
-            // If input is not null or empty
-            if(topping != null && topping != "")
-            {
-                // If Toppings contains input, remove that topping and decrease price
-                if (Toppings.Contains(topping))
-                {
-                    Toppings.Remove(topping);
-                    Price -= 1.00M;
-                }
-            }
-        }
+        public Inventory toppings = new Inventory();
 
         public void ShowPizzaDetails()
         {
-            string output = "This pizza has ";
-            // Adds each topping to the string followed by a comma for formatting
-            foreach (var item in Toppings)
-            {
-                output += $"{item}, ";
-            }
-            output += $"and is worth {Decimal.ToOACurrency(Price)}";
+            Console.WriteLine(
+                $"PizzaID: {PizzaID}\n" + 
+                $"Pepperoni: {toppings.Pepperoni == 1}\n" +
+                $"Sausage: {toppings.Sausage == 1}\n" +
+                $"Ham: {toppings.Ham == 1}\n" +
+                $"Bacon: {toppings.Bacon == 1}\n" +
+                $"Jalapenos: {toppings.Jalapenos == 1}\n" +
+                $"Green Bell Peppers: {toppings.GreenBellPeppers == 1}\n" +
+                $"Black Olives: {toppings.BlackOlives == 1}\n" +
+                $"Pineapple: {toppings.Pineapple == 1}\n" +
+                $"Mushrooms: {toppings.Mushrooms == 1}\n" +
+                $"Onions: {toppings.Onions == 1}\n" +
+                $"Current Price: {Price.ToString("C2")}\n");
         }
 
         public override string ToString()
         {
-            string output = "";
-            foreach(var item in Toppings)
-            {
-                output += $"{item} ";
-            }
-            output += $": {Price}";
-            return output;
+            string pizzaString = $"PizzaID: {PizzaID}, " +
+                $"{toppings.ToString()}, " +
+                $"Price: {Price.ToString("C2")}";
+            Console.WriteLine(pizzaString);
+            return pizzaString;
         }
     }
 }

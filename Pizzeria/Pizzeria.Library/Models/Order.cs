@@ -9,36 +9,30 @@ namespace Pizzeria.Library.Models
     public class Order : IOrder
     {
         public int OrderID { get; set; }
-        ILocation IOrder.Location { get; set; }
+        public ILocation Location { get; set; }
         public IUser User { get; set; }
         public DateTime OrderTime { get; set; }
-        public List<IPizza> Pizzas { get; set; }
+        public List<Pizza> Pizzas { get; set; }
         public decimal Value { get; set; } = 0.00M;
 
-        public void ViewOrder(Order order)
+        public void ViewOrder()
         {
             Console.WriteLine("Your order is currently as follows:");
-            foreach(var pizza in order.Pizzas)
+            foreach(var pizza in Pizzas)
             {
-                Console.WriteLine($"Pizza {order.Pizzas.IndexOf(pizza) + 1}: {pizza.ToString()}");
+                pizza.ShowPizzaDetails();
             }
-            Console.WriteLine($"You are ordering {order.Pizzas.Count} pizzas, for a grand total of {order.Value.ToString("{0:C2")}");
-        }
 
-        public void AddPizza(Pizza pizza)
-        {
-            if(pizza != null)
+            string p = "";
+            if (Pizzas.Count == 1)
             {
-                if(Pizzas.Count < 12)
-                {
-                    Pizzas.Add(pizza);
-                    Value = RecalculateValue();
-                }
-                else
-                {
-                    Console.WriteLine("There are already 12 pizzes in your order, you can't add any more!");
-                }
+                p = "pizza";
             }
+            else
+            {
+                p = "pizzas";
+            }
+            Console.WriteLine($"You are ordering {Pizzas.Count} {p}, for a grand total of {Value.ToString("C2")}\n");
         }
 
         public void RemovePizza(int pizzaIdNumber)
@@ -52,6 +46,10 @@ namespace Pizzeria.Library.Models
                    This would cause some issues with the order count, since there would then be x-1 pizzas, but
                    the program would still just think there are x pizzas. Gotta be safe! */
                 Pizzas = Pizzas.Where(pizza => pizza != null).ToList();
+                foreach(var pizza in Pizzas)
+                {
+                    pizza.PizzaID = Pizzas.IndexOf(pizza);
+                }
                 Value = RecalculateValue();
             }
             else
@@ -73,6 +71,20 @@ namespace Pizzeria.Library.Models
             {
                 result += pizza.Price;
             }
+            return result;
+        }
+        
+        public override string ToString()
+        {
+            string result = $"OrderID: {OrderID}, " +
+                $"LocationID: {Location.LocationID}, " +
+                $"UserID: {User.UserID}, " +
+                $"OrderTime: {OrderTime}, Pizzas Ordered:(";
+            foreach(var item in Pizzas)
+            {
+                result += $"{item.ToString()},";
+            }
+            result += $") Value: {Value},";
             return result;
         }
     }

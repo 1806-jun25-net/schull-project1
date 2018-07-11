@@ -8,78 +8,166 @@ namespace Pizzeria.Library.Models
 {
     public class Location : ILocation
     {
+        public int LocationID { get; set; }
         public string LocationName { get; set; }
-        public List<Topping> Inventory { get; set; }
-
-        public void DisplayInventory()
+        public Inventory LocationInventory = new Inventory();
+        public List<IOrder> OrderHistory { get; set; }
+        //
+        //  Fix the inventory stuff in Location!
+        //
+        public void AddOrderToHistory(Order order)
         {
-            if (Inventory != null)
-            {
-                foreach (var item in Inventory)
-                {
-                    Console.WriteLine($"{item.count} x {item.toppingName}");
-                }
-            }
+            order.OrderID = OrderHistory.Count() + 1;
+            OrderHistory.Add(order);
         }
 
         public void AddToInventory(string itemName, int itemCount)
         {
-            // If inventory has a topping with itemName as the name, do this.
-            if (HasTopping(itemName.ToLower()))
+            // For each possible item in the inventory. Otherwise, no such item exists.
+            switch (itemName)
             {
-                Topping itemInStock = Inventory.FirstOrDefault(x => x.toppingName == itemName.ToLower());
-                itemInStock.count += itemCount;
-            }
-            // If not, create a new topping and add it to the list.
-            else
-            {
-                Inventory.Add(new Topping(itemName.ToLower(), itemCount));
+                case "pepperoni":
+                    LocationInventory.Pepperoni += itemCount;
+                    break;
+                case "sausage":
+                    LocationInventory.Sausage += itemCount;
+                    break;
+                case "ham":
+                    LocationInventory.Ham += itemCount;
+                    break;
+                case "bacon":
+                    LocationInventory.Bacon += itemCount;
+                    break;
+                case "jalapenos":
+                    LocationInventory.Jalapenos += itemCount;
+                    break;
+                case "green bell peppers":
+                    LocationInventory.GreenBellPeppers += itemCount;
+                    break;
+                case "black olives":
+                    LocationInventory.BlackOlives += itemCount;
+                    break;
+                case "pineapple":
+                    LocationInventory.Pineapple += itemCount;
+                    break;
+                case "mushrooms":
+                    LocationInventory.Mushrooms += itemCount;
+                    break;
+                case "onions":
+                    LocationInventory.Onions += itemCount;
+                    break;
+                default:
+                    throw new ArgumentException($"Incorrect input: no such topping as {itemName}");
             }
         }
-
-        
 
         public void RemoveFromInventory(string itemName, int itemCount)
         {
-            if (HasTopping(itemName) == true)
+            switch (itemName)
             {
-                var topping = Inventory.Find(itemName);
+                case "pepperoni":
+                    if (LocationInventory.Pepperoni > itemCount)
+                    {
+                        LocationInventory.Pepperoni -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "sausage":
+                    if (LocationInventory.Sausage > itemCount)
+                    {
+                        LocationInventory.Sausage -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "ham":
+                    if (LocationInventory.Ham > itemCount)
+                    {
+                        LocationInventory.Ham -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "bacon":
+                    if (LocationInventory.Bacon > itemCount)
+                    {
+                        LocationInventory.Bacon -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "jalapenos":
+                    if (LocationInventory.Jalapenos > itemCount)
+                    {
+                        LocationInventory.Jalapenos -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "green bell peppers":
+                    if (LocationInventory.GreenBellPeppers > itemCount)
+                    {
+                        LocationInventory.GreenBellPeppers -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "black olives":
+                    if (LocationInventory.BlackOlives > itemCount)
+                    {
+                        LocationInventory.BlackOlives -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "pineapple":
+                    if (LocationInventory.Pineapple > itemCount)
+                    {
+                        LocationInventory.Pineapple -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "mushrooms":
+                    if (LocationInventory.Mushrooms > itemCount)
+                    {
+                        LocationInventory.Mushrooms -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                case "onions":
+                    if (LocationInventory.Onions > itemCount)
+                    {
+                        LocationInventory.Onions -= itemCount;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can't have a negative count of something!\n");
+                    }
+                    break;
+                default:
+                    throw new ArgumentException($"Incorrect input: no such topping as {itemName}\n");
             }
-            //var itemInStock = Inventory.FirstOrDefault(x => x.Name == itemName);
-            //if (Inventory.Contains(itemInStock) == true && itemInStock.Count > itemCount)
-            //{
-            //    if (itemInStock != null && itemInStock.Count >= itemCount)
-            //    {
-            //        itemInStock.Count -= itemCount;
-            //    }
-            //    else if (itemInStock.Count < itemCount)
-            //    {
-            //        Console.WriteLine($"There was not enough {itemInStock.Name} in inventory to pull from stock." +
-            //            $" You currently have {itemInStock.Count}.");
-            //    }
-            //}
-            //if (itemInStock.Count == 0)
-            //{
-            //    Inventory.Remove(itemInStock);
-            //}
-        }
-
-        private bool HasTopping(string topping)
-        {
-            // Find an instance of a Topping in the Inventory 
-            // where "inventoryTopping.toppingName == topping.toppingName"
-            Topping itemInStock = Inventory.FirstOrDefault(x => x.toppingName == topping);
-            // Is the topping present in inventory?
-            if (itemInStock.toppingName.ToLower() == topping.ToLower())
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public string InventoryToString()
-        {
-            throw new NotImplementedException();
         }
     }
 }

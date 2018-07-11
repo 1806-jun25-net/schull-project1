@@ -8,9 +8,6 @@ namespace Pizzeria.Library.Interfaces
     {
         int LocationID { get; set; }
         string LocationName { get; set; }
-        HashSet<string> Inventory { get; set; }
-
-        void DisplayInventory();
-        string InventoryToString();
+        List<IOrder> OrderHistory { get; set; }
     }
 }
