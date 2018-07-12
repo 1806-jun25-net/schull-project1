@@ -13,7 +13,6 @@ namespace Pizzeria.UI
         static Pizza pizza = new Pizza();
         static int numericInput = 1;
         static char charInput = 'n';
-        static List<Pizza> tempPizzaList = new List<Pizza>();
         
         static void Main(string[] args)
         {
@@ -113,7 +112,6 @@ namespace Pizzeria.UI
                             order.Value = order.RecalculateValue();
                             pizza = new Pizza();
                             //pizzeria.AddOrderToHistory(order);
-                            order.DeleteOrder();
                         }
                         else if (order.Pizzas.Count >= 12)
                         {
