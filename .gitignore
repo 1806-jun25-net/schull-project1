@@ -553,5 +553,20 @@ $RECYCLE.BIN/
 # should be stored in the .pubxml.user file.
 *.pubxml.user
 
+# ignore appsettings
+**/appsettings.development.json
+**/appsettings.staging.json
+**/appsettings.production.json
+
+# ignore connectionstrings
+**/connectionstrings.development.json
+**/connectionstrings.staging.json
+**/connectionstrings.production.json
+
+# ignore mailsettings
+**/mailsettings.development.json
+**/mailsettings.staging.json
+**/mailsettings.production.json
+
 
 # End of https://www.gitignore.io/api/macos,csharp,windows,visualstudio,visualstudiocode
