@@ -1,0 +1,84 @@
+﻿@model Pizzeria.App.Models.Inventory
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Inventory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pepperoni)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pepperoni)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sausage)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sausage)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ham)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ham)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bacon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bacon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Jalapenos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Jalapenos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GreenBellPeppers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GreenBellPeppers)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BlackOlives)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BlackOlives)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pineapple)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pineapple)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mushrooms)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mushrooms)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Onions)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Onions)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Location.LocationName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

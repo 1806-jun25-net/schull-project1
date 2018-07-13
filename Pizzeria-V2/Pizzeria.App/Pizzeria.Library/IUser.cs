@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pizzeria.App.Models
+namespace Pizzeria.Library
 {
-    public class IUser
+    interface IUser
     {
-        int UserID { get; set; }
+        int Id { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        int DefaultLocationID { get; set; }
+        int DefaultLocationId { get; set; }
     }
 }

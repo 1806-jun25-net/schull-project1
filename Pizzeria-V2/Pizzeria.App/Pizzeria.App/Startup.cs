@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+//using EFGetStarted.AspNetCore.ExistingDb.Models;
+using Microsoft.EntityFrameworkCore;
+using Pizzeria.App.Models;
 
 namespace Pizzeria.App
 {
@@ -24,6 +27,11 @@ namespace Pizzeria.App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
+            var connection = "Server=tcp:schull-1806.database.windows.net,1433;Initial Catalog=Pizzeria;Persist Security Info=False;User ID=Varnathin;Password=Kronehand2;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //"Server=tcp:schull-1806.database.windows.net,1433;Initial Catalog=Pizzeria;Persist Security Info=False;User ID=Varnathin;Password=Kronehand2;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+            services.AddDbContext<PizzeriaContext>(options => options.UseSqlServer(connection));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pizzeria.App.Models
+namespace Pizzeria.Library
 {
     public class User : IUser
     {
@@ -12,7 +12,7 @@ namespace Pizzeria.App.Models
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int LocationId { get; set; }
+        public int DefaultLocationId { get; set; }
         public Boolean Employee { get; set; } = false;
     }
 
